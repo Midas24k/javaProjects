@@ -23,19 +23,16 @@ public class Paint1 {
             try {
                 wallHeight = scnr.nextDouble();
 
-                if (wallHeight <= 0) {
+                if (wallHeight <= 0.0) {
                     System.out.println("Invalid input. Height must be greater than 0.");
                     validInput = false;
                 }
-
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input. Please enter a numeric value.");
                 validInput = false;
-                scnr.next();  // clear invalid token
+                scnr.next();  // clear bad token
             }
-
         } while (!validInput);
-
 
         // Get wall width with validation
         do {
@@ -45,29 +42,24 @@ public class Paint1 {
             try {
                 wallWidth = scnr.nextDouble();
 
-                if (wallWidth <= 0) {
+                if (wallWidth <= 0.0) {
                     System.out.println("Invalid input. Width must be greater than 0.");
                     validInput = false;
                 }
-
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input. Please enter a numeric value.");
                 validInput = false;
-                scnr.next();
+                scnr.next();  // clear bad token
             }
-
         } while (!validInput);
 
-
-        // Calculate wall area
+        // Calculate and output wall area
         wallArea = wallHeight * wallWidth;
         System.out.println("Wall area: " + wallArea + " square feet");
 
-        // Calculate paint needed (exact) and round up to whole gallons for purchase
+        // Calculate and output exact gallons needed (no rounding)
         gallonsPaintNeeded = wallArea / squareFeetPerGallons;
-        int gallonsToBuy = (int) Math.ceil(gallonsPaintNeeded);
-        System.out.printf("Paint needed (exact): %.2f gallons%n", gallonsPaintNeeded);
-        System.out.println("Paint needed (whole gallons to buy): " + gallonsToBuy + " gallon" + (gallonsToBuy == 1 ? "" : "s"));
+        System.out.println("Paint needed: " + gallonsPaintNeeded + " gallons");
 
         scnr.close();
     }
